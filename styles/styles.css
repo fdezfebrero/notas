@@ -1,0 +1,12 @@
+.footer {
+    position: fixed;
+    bottom: 0;
+  }
+
+.textcenter{
+    text-align:center;
+  }
+  .img-aviso{
+    width: 300px;
+    height: 300px;
+  }
