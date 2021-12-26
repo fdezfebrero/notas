@@ -51,13 +51,13 @@ if(isset($_GET['buscar'])){
     $id= $_GET['id'];
 
     if ($nome && $id) {
-        $campo = "ID";
+        $campo = "IDNota";
         $valor = $id;
     } elseif ($nome) {
         $campo = "nome";
         $valor = $nome;
     } elseif ($id) {
-        $campo = "ID";
+        $campo = "IDNota";
         $valor = $id;
     } else {
         echo '<div class="container text-center"><img class="img-aviso rounded mx-auto d-block" src="./img/smiley-1635450"  alt="..."><h2 class="textcenter">Error:: non se introduciron valores para buscar</h2></div>';
@@ -69,9 +69,9 @@ if(isset($_GET['buscar'])){
         $pdoStatement->bindParam(1, $valor);
         $pdoStatement->execute();
 
-        echo '<table class="table container"> <thead><tr><th scope="col">ID</th><th scope="col">NOTA</th><th scope="col">USUARIO</th></tr> </thead> <tbody>';
+        echo '<table class="table container"> <thead><tr><th scope="col">ID</th><th scope="col">NOTA</th><th scope="col">USUARIO</th><th scope="col">Data</th></tr> </thead> <tbody>';
         while ($fila = $pdoStatement->fetch(PDO::FETCH_ASSOC))
-            echo "<tr><td>" . $fila['ID'] . " </td><td>" . $fila['Nota'] . "</td><td>" . $fila['Usuario'] . "</td></tr>";
+            echo "<tr><td>" . $fila['IDNota'] . " </td><td>" . $fila['Nota'] . "</td><td>" . $fila['Usuario'] ."</td><td>". $fila['Date'] ."</td></tr>";
         echo "</tbody><table>";
 
 
@@ -92,5 +92,14 @@ if(isset($_GET['buscar'])){
             </div>
         </footer>
     </div>
+    <script>
+        function mostrar() {
+            $("#mostrar").toggle();
+        }
+        function buscar() {
+            let id = document.getElementById('id').value;
+            location.href="buscarNota.php?id="+ id +"&buscar=buscar"   
+        }
+    </script>
 </body>
 </html>

@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Notas</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-    <link rel="stylesheet" href="styles/styles.css" >
+    <link rel="stylesheet" href="styles/styles.css">
     <script src="https://code.jquery.com/jquery-3.6.0.slim.min.js" integrity="sha256-u7e5khyithlIdTpu22PHhENmPcRdFiHRjhAuHcs05RI=" crossorigin="anonymous">
     </script>
 </head>
@@ -23,67 +23,66 @@
                 </a>
 
                 <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
-                    <li><a href="#" class="nav-link px-2 text-secondary">Notas</a></li>
+                    <li><a href="https://notas.fdezfebrero.es" class="nav-link px-2 text-secondary">Notas</a></li>
                 </ul>
 
-                <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3"  action="buscarNota.php" method="get">
+                <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" action="buscarNota.php" method="get">
 
-                        <input type="int" class="form-control form-control-dark id" placeholder="Buscar..." name="id" id="id" aria-label="Search">
-                        
+                    <input type="int" class="form-control form-control-dark id" placeholder="Buscar..." name="id" id="id" aria-label="Search">
+
                 </form>
-                    <div class="text-end">
-                            <button class="btn btn-warning" type="submit" name="buscar" onclick="buscar()">Buscar</button>
-                    </div>
-                
+                <div class="text-end">
+                    <button class="btn btn-warning" type="submit" name="buscar" onclick="buscar()">Buscar</button>
+                </div>
+
             </div>
         </div>
     </header>
 
-<?php
-require "./config.php";
+    <?php
+    require "./config.php";
 
-if(isset($_GET['id'])){
-    $id= $_GET['id'];
+    if (isset($_GET['id'])) {
+        $IDNota = $_GET['id'];
 
         $pdo = conectar();
-        $pdo->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION );
-        $pdoStatement=$pdo->prepare("SELECT  * FROM Notas WHERE ID like ?");
-        $pdoStatement->bindParam(1, $id);
+        $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        $pdoStatement = $pdo->prepare("SELECT  * FROM Notas WHERE IDNota like ?");
+        $pdoStatement->bindParam(1, $IDNota);
         $pdoStatement->execute();
 
-        echo "<table><tr><th>ID</th><th>NOTA</th><th>USUARIO</th></tr>";
+        echo '<table class="table container"> <thead><tr><th scope="col">ID</th><th scope="col">NOTA</th><th scope="col">USUARIO</th><th scope="col">Data</th></tr> </thead> <tbody>';
         while ($fila = $pdoStatement->fetch(PDO::FETCH_ASSOC))
-            echo "<tr><td>" . $fila['ID'] . " </td><td>" . $fila['Nota'] . "</td><td>" . $fila['Usuario'] . "</td></tr>";
-        echo "<table>";
-
-
-}else{
-    echo "<p>a nota xa non existe</p>";
-}
-?>
-<div class="container">
-<footer class="footer  justify-content-between align-items-center py-3 my-4 border-top">
-    <div class="col-md-4 d-flex align-items-center">
-        <a href="/" class="mb-3 me-2 mb-md-0 text-muted text-decoration-none lh-1">
-            <svg class="bi" width="30" height="24">
-                <use xlink:href="#bootstrap" />
-            </svg>
-        </a>
-        <span class="text-muted">&copy; 2021 Notas, Inc</span>
+            echo "<tr><td>" . $fila['IDNota'] . " </td><td>" . $fila['Nota'] . "</td><td>" . $fila['Usuario'] . "</td><td>" . $fila['Date'] . "</td></tr>";
+        echo "</tbody><table>";
+    } else {
+        echo "<p>A nota xa non existe</p>";
+    }
+    ?>
+    <div class="container">
+        <footer class="footer mt-auto py-3">
+            <div class="container">
+                <a href="/" class="mb-3 me-2 mb-md-0 text-muted text-decoration-none lh-1">
+                    <svg class="bi" width="30" height="24">
+                        <use xlink:href="#bootstrap" />
+                    </svg>
+                </a>
+                <span class="text-muted">&copy; 2021 Notas, Inc</span>
+            </div>
+        </footer>
     </div>
-</footer>
-</div>
 
 
-<script>
-function mostrar() {
-    $("#mostrar").toggle();
-}
-function buscar() {
-    let id = document.getElementById('id').value;
-    location.href="buscarNota.php?id="+ id +"&buscar=buscar"   
-}
-</script>
+    <script>
+        function mostrar() {
+            $("#mostrar").toggle();
+        }
+
+        function buscar() {
+            let id = document.getElementById('id').value;
+            location.href = "buscarNota.php?id=" + id + "&buscar=buscar"
+        }
+    </script>
 
 </body>
 

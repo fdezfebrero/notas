@@ -49,13 +49,20 @@ if(isset($_GET['nota'])){
     }else{
         $nome="";   
      }
+
+     $IDNota= uniqid();
+
+     $fecha = date("Y-m-d H:i:s"); 
+
         $pdo = conectar();
         $pdo->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION );
-        $pdoStatement=$pdo->prepare("INSERT INTO Notas (Nota, Usuario) VALUES (:nota, :nome)");
-        $datosNota= array('nota'=>$nota, 'nome'=>$nome);
+        $pdoStatement=$pdo->prepare("INSERT INTO Notas (Nota, Usuario, IDNota, Date ) VALUES (:nota, :nome, :idnota, :date)");
+        $datosNota= array('nota'=>$nota, 'nome'=>$nome, 'idnota'=>$IDNota, 'date'=>$fecha);
         $pdoStatement->execute($datosNota);
 
-        echo '<div class="container text-center"><img class="img-aviso rounded mx-auto d-block" src="./img/hand-306520.svg"  alt="..."><h2 class="textcenter">Gardado con exito</h2></div>';
+        echo '<div class="container text-center"><img class="img-aviso rounded mx-auto d-block" src="./img/hand-306520.svg"  alt="..."><h2 class="textcenter">Gardado con exito</h2><br>
+        <h2 class="textcenter">A tua nota é notas.fdezfebrero.es/nota.php?id=<span>'.$IDNota.'</span></h2><br>
+        <h2 class="textcenter">Garda o Enlace para acceder de novo a tua nota</h2></div>';
 
 
 }else{
@@ -75,6 +82,15 @@ if(isset($_GET['nota'])){
         </footer>
     </div>
 
+    <script>
+        function mostrar() {
+            $("#mostrar").toggle();
+        }
+        function buscar() {
+            let id = document.getElementById('id').value;
+            location.href="buscarNota.php?id="+ id +"&buscar=buscar"   
+        }
+    </script>
 </body>
 
 </html>

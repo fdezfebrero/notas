@@ -1,7 +1,7 @@
 <?php
 
 function conectar(){
-    $host_name = 'db-pdo-proba';
+    $host_name = 'db-pdo-notas';
     $database = 'proba';
     $user_name = 'usuario';
     $password = 'abc123.';
