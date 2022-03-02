@@ -24,7 +24,7 @@
                 </a>
 
                 <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
-                    <li><a href="https://notas.fdezfebrero.es" class="nav-link px-2 text-secondary">Notas</a></li>
+                    <li><a href="https://notas.fdezfebrero.es" class="nav-link px-2 text-secondary titulo">Notas</a></li>
                 </ul>
 
                 <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3"  action="buscarNota.php" method="get">
@@ -88,7 +88,7 @@ if(isset($_GET['buscar'])){
                         <use xlink:href="#bootstrap" />
                     </svg>
                 </a>
-                <span class="text-muted">&copy; 2021 Notas, Inc</span>
+                <span class="text-muted">&copy; 2021 Notas by ハビエル </span>
             </div>
         </footer>
     </div>
