@@ -23,7 +23,17 @@ if (isset($_GET['gardar'])) {
     mostraMensaxeGardado(  $mensaxe, $idNota);
 }
 
-if (isset($_GET['buscar'])) {
+if (isset($_GET['buscar']) || isset($_GET['id'])) {
+    $id= htmlentities($_GET['id']);
+    $clientes = modeloNota::mostraPorID($id); 
+
+    while ($fila = $clientes->fetch(PDO::FETCH_ASSOC)) {
+        $array[] = $fila;
+    }
+    mostraNotaBuscada($array); 
+
+}
+if (isset($_GET['id'])) {
     $id= htmlentities($_GET['id']);
     $clientes = modeloNota::mostraPorID($id); 
 
