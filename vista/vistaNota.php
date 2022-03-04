@@ -53,7 +53,7 @@
         function mostraMensaxeGardado($mensaxe, $idNota)
         {
             echo '<div class="container text-center"><img class="img-aviso rounded mx-auto d-block" src="../img/hand-306520.svg"  alt="..."><h2 class="textcenter">'.$mensaxe.'</h2><br>
-            <h2 class="textcenter">A tua nota é notas.fdezfebrero.es/nota.php?id=<span>'.$idNota.'</span></h2><br>
+            <h2 class="textcenter">A tua nota é <span>'.$idNota.'</span></h2><br>
             <h2 class="textcenter">Garda o Enlace para acceder de novo a tua nota</h2></div>';
         }
        
@@ -99,7 +99,7 @@
 
         function buscar() {
             let id = document.getElementById('id').value;
-            location.href="./controlador/controladorNota.php?id="+ id +"&buscar=buscar"   
+            location.href="controladorNota.php?id="+ id +"&buscar=buscar"   
         }
     </script>
 </body>
