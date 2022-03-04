@@ -2,10 +2,10 @@
 //conexion.php
 class Conexion extends PDO
 {
-    private $host = "db5006113262.hosting-data.io";
-    private $db = "dbs5116354";
-    private $user = "dbu2880362";
-    private $pass = "Santorio5.";
+    private $host = "db";
+    private $db = "notas";
+    private $user = "root";
+    private $pass = "root";
     private $dsn;
     public function __construct()
     {
