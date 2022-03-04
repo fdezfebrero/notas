@@ -14,7 +14,7 @@ class Conexion extends PDO
             parent::__construct($this->dsn, $this->user, $this->pass);
             $this->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         } catch (PDOException $e) {
-            die("Erro na conexión: mensaxe: " . $e->getMessage());
+            die("Erro na conexión: mensaxe: ");
         }
     }
 }
