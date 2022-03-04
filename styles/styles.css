@@ -20,3 +20,8 @@ body .titulo {
 .container_mensaxes {
     height: 100px;
 }
+
+.nota {
+    text-align: center;
+    white-space: normal;
+}

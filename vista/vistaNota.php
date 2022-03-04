@@ -23,7 +23,7 @@
                 </a>
 
                 <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
-                    <li><a href="#" class="nav-link px-2 text-secondary titulo">Notas</a></li>
+                    <li><a href="../index.php" class="nav-link px-2 text-secondary titulo">Notas</a></li>
                 </ul>
 
                 <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" action="buscarNota.php" method="get">
@@ -45,7 +45,7 @@
         {
             echo '<table class="table container"> <thead><tr><th scope="col">ID</th><th scope="col">NOTA</th><th scope="col">USUARIO</th><th scope="col">Data</th></tr> </thead> <tbody>';
             foreach ($array as $value) {
-                echo "<tr><td>" . $array['IDNota'] . " </td><td>" . $array['Nota'] . "</td><td>" . $array['Usuario'] ."</td><td>". $array['Date'] ."</td></tr>";
+                echo "<tr><td>" . $value['IDNota'] . " </td><td>" . $value['Nota'] . "</td><td>" . $value['Usuario'] ."</td><td>". $value['Date'] ."</td></tr>";
                 
             }
             echo "</tbody><table>";
@@ -60,12 +60,20 @@
 
         function mostraNotaBuscada($array)
         {
-            echo '<table class="table container"> <thead><tr><th scope="col">ID</th><th scope="col">NOTA</th><th scope="col">USUARIO</th><th scope="col">Data</th></tr> </thead> <tbody>';
+            
             foreach ($array as $value) {
-                echo "<tr><td>" . $array['IDNota'] . " </td><td>" . $array['Nota'] . "</td><td>" . $array['Usuario'] ."</td><td>". $array['Date'] ."</td></tr>";
-                
+                echo'<div class="container text-center">';
+                echo "<div class='row'>
+                <div class='col'> <h3> ID Nota:</h3> <p >" . $value['IDNota'] . " </p></div>
+                <div class='col'><h3>Usuario</h3> <p>" . $value['Usuario'] ."</p></div>
+                <div class='col'><h3> Data</h3> <p>". $value['Date'] ."</p></div>
+            </div>
+            <div class='row'>
+            <div class='nota'><h3>Nota</h3> <p class='lead'>" .$value['Nota']. "</p>
+            </div>";
+            echo '</div>';
             }
-            echo "</tbody><table>";
+            
          
         }
         ?>
@@ -91,7 +99,7 @@
 
         function buscar() {
             let id = document.getElementById('id').value;
-            location.href = "buscarNota.php?id=" + id + "&buscar=buscar"
+            location.href="./controlador/controladorNota.php?id="+ id +"&buscar=buscar"   
         }
     </script>
 </body>

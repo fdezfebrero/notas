@@ -24,7 +24,7 @@ if (isset($_GET['gardar'])) {
 }
 
 if (isset($_GET['buscar'])) {
-    $id= $_GET['id'];
+    $id= htmlentities($_GET['id']);
     $clientes = modeloNota::mostraPorID($id); 
 
     while ($fila = $clientes->fetch(PDO::FETCH_ASSOC)) {
