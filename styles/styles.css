@@ -16,3 +16,12 @@ body .titulo {
     width: 300px;
     height: 300px;
 }
+
+.container_mensaxes {
+    height: 100px;
+}
+
+.nota {
+    text-align: center;
+    white-space: normal;
+}

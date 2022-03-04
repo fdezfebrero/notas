@@ -4,11 +4,11 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Notas</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-    <link rel="stylesheet" href="styles/styles.css" >
+    <link rel="stylesheet" href="../styles/styles.css">
     <script src="https://code.jquery.com/jquery-3.6.0.slim.min.js" integrity="sha256-u7e5khyithlIdTpu22PHhENmPcRdFiHRjhAuHcs05RI=" crossorigin="anonymous">
     </script>
+    <title>Notas</title>
 </head>
 
 <body>
@@ -23,34 +23,60 @@
                 </a>
 
                 <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
-                    <li><a href="#" class="nav-link px-2 text-secondary titulo">Notas</a></li>
+                    <li><a href="../index.php" class="nav-link px-2 text-secondary titulo">Notas</a></li>
                 </ul>
 
-                <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3"  action="buscarNota.php" method="get">
+                <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" action="buscarNota.php" method="get">
 
-                        <input type="int" class="form-control form-control-dark id" placeholder="Buscar..." name="id" id="id" aria-label="Search">
-                        
+                    <input type="int" class="form-control form-control-dark id" placeholder="Buscar..." name="id" id="id" aria-label="Search">
+
                 </form>
-                    <div class="text-end">
-                            <button class="btn btn-warning" type="submit" name="buscar" onclick="buscar()">Buscar</button>
-                    </div>
-                
+                <div class="text-end">
+                    <button class="btn btn-warning" type="submit" name="buscar" onclick="buscar()">Buscar</button>
+                </div>
+
             </div>
         </div>
     </header>
 
-    <div class="container">
-        <form action="./controlador/controladorNota.php" method="get">
-            <div class="mb-3">
-                <label for="nota" class="form-label">Nota </label><br>
-                <textarea type="" class="form-control" name="nota" id="" cols="30" rows="10"></textarea>
+    <div class="container container_mensaxes">
+        <?php
+        function mostraTaboaCliente($array)
+        {
+            echo '<table class="table container"> <thead><tr><th scope="col">ID</th><th scope="col">NOTA</th><th scope="col">USUARIO</th><th scope="col">Data</th></tr> </thead> <tbody>';
+            foreach ($array as $value) {
+                echo "<tr><td>" . $value['IDNota'] . " </td><td>" . $value['Nota'] . "</td><td>" . $value['Usuario'] ."</td><td>". $value['Date'] ."</td></tr>";
+                
+            }
+            echo "</tbody><table>";
+        }
+        function mostraMensaxeGardado($mensaxe, $idNota)
+        {
+            echo '<div class="container text-center"><img class="img-aviso rounded mx-auto d-block" src="../img/hand-306520.svg"  alt="..."><h2 class="textcenter">'.$mensaxe.'</h2><br>
+            <h2 class="textcenter">A tua nota é notas.fdezfebrero.es/nota.php?id=<span>'.$idNota.'</span></h2><br>
+            <h2 class="textcenter">Garda o Enlace para acceder de novo a tua nota</h2></div>';
+        }
+       
+
+        function mostraNotaBuscada($array)
+        {
+            
+            foreach ($array as $value) {
+                echo'<div class="container text-center">';
+                echo "<div class='row'>
+                <div class='col'> <h3> ID Nota:</h3> <p >" . $value['IDNota'] . " </p></div>
+                <div class='col'><h3>Usuario</h3> <p>" . $value['Usuario'] ."</p></div>
+                <div class='col'><h3> Data</h3> <p>". $value['Date'] ."</p></div>
             </div>
-            <div class="mb-3">
-                <label for="nome" class="form-label">Nome (opcional)</label><br>
-                <input class="form-control" type="text" name="usuario" id="">
-            </div>
-            <button type="submit" class="btn btn-primary" name="gardar">Crear nota</button>
-        </form>
+            <div class='row'>
+            <div class='nota'><h3>Nota</h3> <p class='lead'>" .$value['Nota']. "</p>
+            </div>";
+            echo '</div>';
+            }
+            
+         
+        }
+        ?>
     </div>
     <div class="container">
         <footer class="footer justify-content-between align-items-center py-3 ">
@@ -70,12 +96,12 @@
         function mostrar() {
             $("#mostrar").toggle();
         }
+
         function buscar() {
             let id = document.getElementById('id').value;
             location.href="./controlador/controladorNota.php?id="+ id +"&buscar=buscar"   
         }
     </script>
-
 </body>
 
 </html>
