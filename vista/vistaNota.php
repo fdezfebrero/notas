@@ -98,7 +98,7 @@
 
         function buscar() {
             let id = document.getElementById('id').value;
-            location.href="controladorNota.php?id="+ id +"&buscar=buscar"   
+            location.href="controladorNota.php?id="+ id
         }
     </script>
 </body>
