@@ -60,9 +60,8 @@
 
         function mostraNotaBuscada($array)
         {
-            
+            echo'<div class="container text-center">';
             foreach ($array as $value) {
-                echo'<div class="container text-center">';
                 echo "<div class='row'>
                 <div class='col'> <h3> ID Nota:</h3> <p >" . $value['IDNota'] . " </p></div>
                 <div class='col'><h3>Usuario</h3> <p>" . $value['Usuario'] ."</p></div>
@@ -71,9 +70,9 @@
             <div class='row'>
             <div class='nota'><h3>Nota</h3> <p class='lead'>" .$value['Nota']. "</p>
             </div>";
-            echo '</div>';
+           
             }
-            
+            echo '</div>';
          
         }
         ?>
